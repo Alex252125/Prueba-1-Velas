@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arisse Manualidades y Decoraciones</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fdf6f0;
+    }
+    .hover-img:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800">
+  <!-- Encabezado Fijo -->
+  <header class="sticky top-0 bg-white shadow-md z-50 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Arisse Manualidades y Decoraciones</h1>
+    <nav class="space-x-4">
+      <a href="#catalogo" class="hover:text-rose-400">Catálogo</a>
+      <a href="#carrito" class="hover:text-rose-400">Carrito</a>
+      <a href="#contacto" class="hover:text-rose-400">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Mensaje de Bienvenida -->
+  <section class="text-center mt-10 animate__animated animate__fadeIn">
+    <h2 class="text-3xl text-rose-400 font-semibold">Bienvenido a Arisse Manualidades y Decoraciones</h2>
+    <p class="mt-2 text-lg">"Convierte tu evento en algo inolvidable con detalles únicos y hechos con amor."</p>
+  </section>
+
+  <!-- Botón de ocasión especial -->
+  <section class="text-center my-6">
+    <button id="ocasionBtn" class="bg-rose-300 hover:bg-rose-400 text-white px-6 py-2 rounded-2xl shadow">
+      ¿Cuál es la ocasión especial que vamos a celebrar?
+    </button>
+    <div id="ocasionMenu" class="hidden mt-4 p-4 bg-rose-100 rounded-xl shadow animate__animated animate__fadeIn">
+      <p class="mb-2">Selecciona un tipo de evento para ver recomendaciones personalizadas:</p>
+      <ul class="space-y-2">
+        <li>🌸 Bautizos</li>
+        <li>🎂 Cumpleaños</li>
+        <li>💍 Bodas</li>
+        <li>👶 Baby Showers</li>
+        <li>🎉 Fiestas Temáticas</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Formulario para agregar productos -->
+  <section class="text-center my-10">
+    <h3 class="text-xl font-semibold">Agregar Producto</h3>
+    <input id="productoInput" type="text" placeholder="Ej: Vela artesanal" class="mt-2 border px-4 py-2 rounded shadow" />
+    <button onclick="agregarProducto()" class="ml-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded shadow">
+      <i class="fas fa-plus"></i> Agregar
+    </button>
+    <p id="mensajeError" class="text-red-500 mt-2 hidden">Por favor escribe un producto válido.</p>
+  </section>
+
+  <!-- Lista y Filtro de Productos -->
+  <section id="catalogo" class="p-6">
+    <h2 class="text-2xl font-bold text-center mb-4">Catálogo</h2>
+    <input oninput="filtrarProductos(this.value)" type="text" placeholder="Buscar en el catálogo..."
+      class="w-full max-w-md mx-auto border p-2 rounded shadow mb-6" />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Productos con imagenes -->
+      <div class="card p-4 bg-white rounded-xl shadow hover:bg-rose-50 hover-img">
+        <img src="https://via.placeholder.com/150" alt="Jabones" class="rounded-xl mb-2">
+        <h3 class="text-lg font-semibold">Jabones</h3>
+        <button onclick="seleccionarProducto('Jabón - $50')"
+          class="mt-2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-1 rounded shadow">
+          Agregar
+        </button>
+      </div>
+      <div class="card p-4 bg-white rounded-xl shadow hover:bg-rose-50 hover-img">
+        <img src="https://via.placeholder.com/150" alt="Velas Artesanales" class="rounded-xl mb-2">
+        <h3 class="text-lg font-semibold">Velas Artesanales</h3>
+        <button onclick="seleccionarProducto('Vela Artesanal - $80')"
+          class="mt-2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-1 rounded shadow">
+          Agregar
+        </button>
+      </div>
+      <div class="card p-4 bg-white rounded-xl shadow hover:bg-rose-50 hover-img">
+        <img src="https://via.placeholder.com/150" alt="Sahumerios" class="rounded-xl mb-2">
+        <h3 class="text-lg font-semibold">Sahumerios</h3>
+        <button onclick="seleccionarProducto('Sahumerio - $60')"
+          class="mt-2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-1 rounded shadow">
+          Agregar
+        </button>
+      </div>
+      <div class="card p-4 bg-white rounded-xl shadow hover:bg-rose-50 hover-img">
+        <img src="https://via.placeholder.com/150" alt="Catrinas" class="rounded-xl mb-2">
+        <h3 class="text-lg font-semibold">Catrinas</h3>
+        <button onclick="seleccionarProducto('Catrina - $100')"
+          class="mt-2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-1 rounded shadow">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrito de Compras -->
+  <section id="carrito" class="p-6">
+    <h2 class="text-2xl font-bold text-center mb-4">Carrito de Compras</h2>
+    <ul id="listaCarrito" class="space-y-2 mb-4"></ul>
+    <p class="text-lg font-semibold">Total: <span id="total">$0</span></p>
+  </section>
+
+  <!-- Contacto -->
+  <footer id="contacto" class="bg-rose-100 p-6 mt-10 text-center">
+    <h3 class="text-xl font-bold mb-2">Contáctanos</h3>
+    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/525581527114" target="_blank">WhatsApp</a></p>
+    <p><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/ArisseManualidades" target="_blank">Facebook</a></p>
+    <p class="mt-4 text-sm">© 2025 Arisse Manualidades y Decoraciones</p>
+  </footer>
+
+  <script>
+    const listaCarrito = document.getElementById('listaCarrito');
+    const totalElement = document.getElementById('total');
+    const mensajeError = document.getElementById('mensajeError');
+    const ocasionMenu = document.getElementById('ocasionMenu');
+
+    let total = 0;
+
+    document.getElementById('ocasionBtn').addEventListener('click', () => {
+      ocasionMenu.classList.toggle('hidden');
+    });
+
+    function agregarProducto() {
+      const input = document.getElementById('productoInput');
+      const valor = input.value.trim();
+      if (!valor) {
+        mensajeError.classList.remove('hidden');
+        return;
+      }
+      mensajeError.classList.add('hidden');
+      seleccionarProducto(valor);
+      input.value = '';
+    }
+
+    function seleccionarProducto(nombre) {
+      const li = document.createElement('li');
+      li.textContent = nombre;
+      li.className = 'flex justify-between bg-white p-2 rounded shadow';
+
+      const btnEliminar = document.createElement('button');
+      btnEliminar.textContent = 'Eliminar';
+      btnEliminar.className = 'text-red-500 hover:text-red-700';
+      btnEliminar.onclick = () => {
+        listaCarrito.removeChild(li);
+        actualizarTotal();
+      };
+
+      li.appendChild(btnEliminar);
+      listaCarrito.appendChild(li);
+      actualizarTotal();
+    }
+
+    function actualizarTotal() {
+      const items = listaCarrito.querySelectorAll('li');
+      let suma = 0;
+      items.forEach(item => {
+        const texto = item.textContent.replace('Eliminar', '').trim();
+        const match = texto.match(/\$(\d+)/);
+        if (match) suma += parseInt(match[1]);
+      });
+      total = suma;
+      totalElement.textContent = `$${total}`;
+    }
+
+    function filtrarProductos(valor) {
+      const productos = document.querySelectorAll('#catalogo .card');
+      productos.forEach(p => {
+        p.style.display = p.innerText.toLowerCase().includes(valor.toLowerCase()) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+
+</html>
